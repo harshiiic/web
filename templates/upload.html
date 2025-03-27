@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload & Modify Image</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url("/static/h.jpg") no-repeat center center/cover;
+            font-family: 'Poppins', sans-serif;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+        h2 {
+            font-size: 32px;
+            text-transform: capitalize;
+            font-weight: 600;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.6);
+        }
+        form {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 400px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input, .dropdown-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .dropdown {
+            width: 100%;
+            position: relative;
+            text-align: center;
+        }
+        .dropdown-button {
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .dropdown-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 8px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .dropdown-content div {
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease-in-out;
+        }
+        .dropdown-content div:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #5641c5, #6fc7c1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h2>Upload & Modify Your Image</h2>
+        <p>Select an effect to apply to your image.</p>
+zz
+        <form action="/convert" method="POST" enctype="multipart/form-data">
+            <label for="image">Choose an Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required><br>
+
+            <label>Select Effect:</label>
+            <div class="dropdown">
+                <button type="button" class="dropdown-button" onclick="toggleDropdown()">Select Effect</button>
+                <div class="dropdown-content" id="effectList">
+                    <div onclick="selectEffect('none')">No Effect</div>
+                    <div onclick="selectEffect('grayscale')">Black & White</div>
+                    <div onclick="selectEffect('negative')">Negative</div>
+                    <div onclick="selectEffect('sepia')">Sepia</div>
+                    <div onclick="selectEffect('sketch')">Pencil Sketch</div>
+                    <div onclick="selectEffect('cartoon')">Cartoon</div>
+                    <div onclick="selectEffect('oil_painting')">Oil Painting</div>
+                    <div onclick="selectEffect('hdr')">HDR Effect</div>
+                    <div onclick="selectEffect('emboss')">Emboss</div>
+                    <div onclick="selectEffect('edge_detection')">Edge Detection</div>
+                    <div onclick="selectEffect('detail_enhancement')">Detail Enhancement</div>
+                </div>
+                <input type="hidden" name="effect" id="effect" value="none">
+            </div><br>
+
+            <button type="submit">Modify Image</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("effectList");
+            dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+        }
+
+        function selectEffect(effect) {
+            document.getElementById("effect").value = effect;
+            document.querySelector(".dropdown-button").innerText = effect.replace("_", " ");
+        }
+
+        // Close dropdown if user clicks outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-button')) {
+                var dropdown = document.getElementById("effectList");
+                if (dropdown.style.display === "block") {
+                    dropdown.style.display = "none";
+                }
+            }
+        };
+    </script>
+
+</body>
+</html>

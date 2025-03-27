@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converted Image</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url("/static/h.jpg") no-repeat center center/cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+        }
+        h2 {
+            font-size: 28px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            margin-bottom: 15px;
+        }
+        img {
+            max-width: 80%;
+            max-height: 500px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+            margin-top: 15px;
+        }
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #5641c5, #6fc7c1);
+            transform: scale(1.05);
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Your Converted Image with Effects</h2>
+    <img src="{{ url_for('processed_image', filename=image_path) }}" alt="Processed Image">
+    
+    <div class="buttons">
+        <a href="{{ url_for('processed_image', filename=image_path) }}" download>
+            <button>Download Image</button>
+        </a>
+        <a href="{{ url_for('upload_page') }}">
+            <button>Wanna Try Again?</button>
+        </a>
+    </div>
+
+</body>
+</html>

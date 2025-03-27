@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url("/static/wow.webp") no-repeat center center/cover;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.3); /* Reduced darkness */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            font-size: 50px;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        p {
+            font-size: 20px;
+            font-weight: 300;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 165, 0, 0.9); /* Bright Orange */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: rgba(255, 140, 0, 1); /* Darker Orange */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Image Converter</h1>
+        <p>Click below to sign up.</p>
+
+        <form action="{{ url_for('login_page') }}" method="GET">
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+</body>
+</html>
